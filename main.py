@@ -6,13 +6,17 @@ import numpy as np
 
 app = FastAPI()
 
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["POST"], allow_headers=["*"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
 
 class TelemetryRequest(BaseModel):
     regions: List[str]
     threshold_ms: int
 
-# Replace with actual telemetry data loaded from the provided bundle
 telemetry_data = {
     "emea": [
         {"latency": 150, "uptime": 99.9},
@@ -26,7 +30,7 @@ telemetry_data = {
     ],
 }
 
-@app.post("/api/check_latency/")
+@app.post("/")
 async def check_latency(req: TelemetryRequest):
     result = {}
     for region in req.regions:
