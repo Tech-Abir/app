@@ -6,7 +6,7 @@ import os
 
 app = FastAPI()
 
-# Enable CORS for any origin (POST requests)
+# Enable CORS for POST requests from any origin
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,11 +15,11 @@ app.add_middleware(
 )
 
 # Load telemetry file (tele.json)
-with open(os.path.join(os.path.dirname(__file__), "../tele.json")) as f:
+telemetry_path = os.path.join(os.path.dirname(__file__), "../tele.json")
+with open(telemetry_path) as f:
     telemetry = json.load(f)
 
 @app.post("/")
-
 async def analyze_latency(request: Request):
     data = await request.json()
     regions = data.get("regions", [])
@@ -47,5 +47,3 @@ async def analyze_latency(request: Request):
         }
 
     return result
-
-
