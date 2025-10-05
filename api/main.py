@@ -18,7 +18,7 @@ app.add_middleware(
 with open(os.path.join(os.path.dirname(__file__), "../tele.json")) as f:
     telemetry = json.load(f)
 
-@app.post("/api")
+@app.post("/")
 
 async def analyze_latency(request: Request):
     data = await request.json()
@@ -47,4 +47,5 @@ async def analyze_latency(request: Request):
         }
 
     return result
+
 
