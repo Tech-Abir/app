@@ -1,8 +1,13 @@
 {
-  "builds": [
-    { "src": "api/main.py", "use": "@vercel/python" }
-  ],
+  "functions": {
+    "api/main.py": {
+      "includeFiles": "tele.json"
+    }
+  },
   "routes": [
-    { "src": "/api", "dest": "api/main.py" }
+    {
+      "src": "/(.*)",
+      "dest": "api/main.py"
+    }
   ]
 }

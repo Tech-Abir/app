@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 # Load telemetry file (tele.json)
-telemetry_path = os.path.join(os.path.dirname(__file__), "../tele.json")
+telemetry_path = os.path.join(os.path.dirname(__file__), "tele.json")
 with open(telemetry_path) as f:
     telemetry = json.load(f)
 
